@@ -9,7 +9,7 @@ using UnityEngine.Events;
 public class PromptManager : MonoBehaviour
 {
     public bool FinishedShift { get; private set; }
-    
+
     [SerializeField] private PromptList[] promptLists;
     [SerializeField] private TMP_Text uiText;
     [SerializeField] private float charDelaySeconds = 0.05f;
@@ -99,7 +99,7 @@ public class PromptManager : MonoBehaviour
         {
             yield return null; // Just wait
         }
-        
+
         _displayPromptCoroutine = null;
     }
 
@@ -119,12 +119,16 @@ public class PromptManager : MonoBehaviour
 
         while (buffer.Length != 0)
         {
-            if (buffer[0] != ' ' && buffer[0] != '\\')
+            if (buffer[0] == ' ')
             {
                 yield return new WaitForSeconds(charDelaySeconds);
             }
-
-            if (buffer[0] == '\\' && buffer[1] == 'd')
+            else if (buffer[0] != '\\')
+            {
+                yield return new WaitForSeconds(charDelaySeconds);
+                _audioSource?.Play();
+            }
+            else if (buffer[1] == 'd')
             {
                 buffer = buffer[2..];
                 yield return new WaitForSeconds(1);
@@ -133,7 +137,6 @@ public class PromptManager : MonoBehaviour
 
             uiText.text += buffer[0];
             buffer = buffer[1..];
-            _audioSource?.Play();
         }
 
         _displayTextCoroutine = null;
