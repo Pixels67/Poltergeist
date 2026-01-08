@@ -27,4 +27,14 @@ public class Crystal : MonoBehaviour
         _yRand = Random.Range(-0.5f, 1.0f);
         _zRand = Random.Range(-0.5f, 0.5f);
     }
+
+    public void Accelerate()
+    {
+        rotateSpeed += 20.0f;
+    }
+
+    public void Decelerate()
+    {
+        rotateSpeed -= 20.0f;
+    }
 }
