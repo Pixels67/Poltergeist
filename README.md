@@ -6,4 +6,4 @@ I really should've used JSON for the messages instead of the atrocity that I com
 Enjoy your spaghetti.
 
 ## License
-Code is licensed under the Apache 2.0 License, Assets that were originally made are licensed under the CC-BY-4.0 License.
+Code is licensed under the Apache 2.0 License, assets that were originally made are licensed under the CC-BY-4.0 License.
